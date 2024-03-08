@@ -1,0 +1,20 @@
+import { Canvas, Meta, Markdown, Story, Controls } from '@storybook/blocks';
+import * as EditorStories from '../stories/CountryListEditor.stories';
+
+import Readme from '../README.md?raw';
+
+<Markdown>{Readme}</Markdown>
+
+<Meta of={EditorStories} />
+
+## In Action
+
+<Story of={EditorStories.Default} />
+
+---
+
+<Story of={EditorStories.List} />
+
+## Props
+
+<Controls />
