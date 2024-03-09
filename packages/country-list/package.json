@@ -45,7 +45,8 @@
     "@contentful/field-editor-test-utils": "^1.4.7"
   },
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": ">=16.8.0",
+    "react-select": "^5.8.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
