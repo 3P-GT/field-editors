@@ -12718,6 +12718,11 @@ devlop@^1.0.0:
   dependencies:
     dequal "^2.0.0"
 
+diacritics@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/diacritics/-/diacritics-1.3.0.tgz#3efa87323ebb863e6696cebb0082d48ff3d6f7a1"
+  integrity sha512-wlwEkqcsaxvPJML+rDh/2iS824jbREk6DUMUKkEaSlxdYHeS43cClJtsWglvw2RfeXGm6ohKDqsXteJ5sP5enA==
+
 didyoumean2@^4.0.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/didyoumean2/-/didyoumean2-4.2.0.tgz#18d883e225848b44a59b0ea246c7799dc0596ff9"
@@ -16086,6 +16091,13 @@ husky@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/husky/-/husky-7.0.0.tgz#3dbd5d28e76234689ee29bb41e048f28e3e46616"
   integrity sha512-xK7lO0EtSzfFPiw+oQncQVy/XqV7UVVjxBByc+Iv5iK3yhW9boDoWgvZy3OGo48QKg/hUtZkzz0hi2HXa0kn7w==
+
+i18n-iso-countries@^7.10.1:
+  version "7.10.1"
+  resolved "https://registry.yarnpkg.com/i18n-iso-countries/-/i18n-iso-countries-7.10.1.tgz#3ff0c2a156b5020393825ebe33a96628b63e8e37"
+  integrity sha512-9DXmAMkfGcGNE+E/2fE85UUjjkPeT0LHMA8d+kcxXiO+s50W28lxiICel8f8qWZmCNic1cuhN1+nw7ZazMQJFA==
+  dependencies:
+    diacritics "1.3.0"
 
 iconv-lite@0.4.24, iconv-lite@^0.4.17, iconv-lite@^0.4.24:
   version "0.4.24"

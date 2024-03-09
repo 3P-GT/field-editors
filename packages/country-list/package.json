@@ -39,6 +39,7 @@
     "@contentful/f36-tokens": "^4.0.0",
     "@contentful/field-editor-shared": "^1.4.6",
     "emotion": "^10.0.17",
+    "i18n-iso-countries": "^7.10.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
