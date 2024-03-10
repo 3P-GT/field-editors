@@ -1,9 +1,19 @@
 import * as React from 'react';
+import Select from 'react-select';
 
 import { TextInput } from '@contentful/f36-components';
 import { FieldAPI, FieldConnector, LocalesAPI } from '@contentful/field-editor-shared';
 import { FieldConnectorChildProps } from '@contentful/field-editor-shared';
+import countries from 'i18n-iso-countries';
+import countriesEn from 'i18n-iso-countries/langs/en.json';
 import isEqual from 'lodash/isEqual';
+
+countries.registerLocale(countriesEn);
+
+const options = Object.keys(countries.getAlpha2Codes()).map((code) => ({
+  value: code,
+  label: countries.getName(code, 'en'),
+}));
 
 import * as styles from './styles';
 
@@ -72,15 +82,18 @@ function ListEditorInternal({
   };
 
   return (
-    <TextInput
-      testId="country-list-editor-input"
-      className={direction === 'rtl' ? styles.rightToLeft : ''}
-      isRequired={isRequired}
-      isInvalid={errors.length > 0}
-      isDisabled={disabled}
-      value={valueState}
-      onChange={onChange}
-    />
+    <>
+      <TextInput
+        testId="country-list-editor-input"
+        className={direction === 'rtl' ? styles.rightToLeft : ''}
+        isRequired={isRequired}
+        isInvalid={errors.length > 0}
+        isDisabled={disabled}
+        value={valueState}
+        onChange={onChange}
+      />
+      <Select options={options} />
+    </>
   );
 }
 
