@@ -42,7 +42,7 @@ export const List: Story = {
     controls: { hideNoControlsWarning: true },
   },
   render: () => {
-    const [field] = createFakeFieldAPI((mock) => mock, ['test1', 'test2', 'test3']);
+    const [field] = createFakeFieldAPI((mock) => mock, ['CL', 'GL', 'KE']);
     return (
       <CountryListEditor
         field={field}
