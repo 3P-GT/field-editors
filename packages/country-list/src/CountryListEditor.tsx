@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Select from 'react-select';
+import Select, { ActionMeta, MultiValue } from 'react-select';
 
-import { TextInput } from '@contentful/f36-components';
 import { FieldAPI, FieldConnector, LocalesAPI } from '@contentful/field-editor-shared';
 import { FieldConnectorChildProps } from '@contentful/field-editor-shared';
 import countries from 'i18n-iso-countries';
@@ -14,8 +13,6 @@ const options = Object.keys(countries.getAlpha2Codes()).map((code) => ({
   value: code,
   label: countries.getName(code, 'en'),
 }));
-
-import * as styles from './styles';
 
 export interface CountryListEditorProps {
   /**
@@ -59,41 +56,46 @@ export function CountryListEditor(props: CountryListEditorProps) {
   );
 }
 
+const countryCodesToOptions = (codes: string[]): { value: string; label: string }[] => {
+  return codes.map((code) => ({
+    value: code,
+    label: countries.getName(code, 'en') ?? code,
+  }));
+};
+
 function ListEditorInternal({
   setValue,
   value,
-  errors,
   disabled,
   direction,
   isRequired,
 }: FieldConnectorChildProps<CountryListValue> & { direction: 'rtl' | 'ltr'; isRequired: boolean }) {
-  const [valueState, setValueState] = React.useState(() => (value || []).join(', '));
+  // debugger;
+  const [valueState, setValueState] = React.useState(() => countryCodesToOptions(value || []));
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const valueAsArray = e.target.value
-      .split(',')
-      .map((item) => item.trim())
-      .filter((item) => item);
-    const changed = !isEqual(valueAsArray, value);
-    setValue(valueAsArray);
-
-    const valueAsString = valueAsArray.join(', ');
-    setValueState(changed ? valueAsString : e.target.value);
+  const onChange = (
+    selectedCountryOptions: MultiValue<{ value: string; label: string }>,
+    _actionMeta: ActionMeta<any>
+  ) => {
+    const selectedCountryCodes = selectedCountryOptions.map((item) => item.value);
+    const changed = !isEqual(selectedCountryCodes, value);
+    if (changed) {
+      setValue(selectedCountryCodes);
+      setValueState(selectedCountryOptions);
+    }
   };
 
   return (
-    <>
-      <TextInput
-        testId="country-list-editor-input"
-        className={direction === 'rtl' ? styles.rightToLeft : ''}
-        isRequired={isRequired}
-        isInvalid={errors.length > 0}
-        isDisabled={disabled}
-        value={valueState}
-        onChange={onChange}
-      />
-      <Select options={options} />
-    </>
+    <Select
+      onChange={onChange}
+      required={isRequired}
+      isDisabled={disabled}
+      value={valueState}
+      isRtl={direction === 'rtl'}
+      isMulti={true}
+      delimiter=","
+      options={options}
+    />
   );
 }
 
