@@ -13,13 +13,13 @@ configure({
 describe('CountryListEditor', () => {
   afterEach(cleanup);
 
-  function expectInputValue({ getByTestId }: RenderResult, expected: string) {
-    const $input = getByTestId('country-list-editor-input');
+  function expectInputValue({ getByRole }: RenderResult, expected: string) {
+    const $input = getByRole('combobox');
     expect($input).toHaveValue(expected);
   }
 
-  function changeInputValue({ getByTestId }: RenderResult, value: string) {
-    const $input = getByTestId('country-list-editor-input');
+  function changeInputValue({ getByRole }: RenderResult, value: string) {
+    const $input = getByRole('combobox');
     fireEvent.change($input, { target: { value } });
   }
 
