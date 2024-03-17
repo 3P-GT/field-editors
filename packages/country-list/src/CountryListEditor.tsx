@@ -11,7 +11,7 @@ countries.registerLocale(countriesEn);
 
 const options = Object.keys(countries.getAlpha2Codes()).map((code) => ({
   value: code,
-  label: countries.getName(code, 'en'),
+  label: countries.getName(code, 'en') || code,
 }));
 
 export interface CountryListEditorProps {
